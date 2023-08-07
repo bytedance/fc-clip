@@ -19,6 +19,8 @@ See [Preparing Datasets for FC-CLIP](datasets/README.md).
 
 See [Getting Started with  FC-CLIP](GETTING_STARTED.md).
 
+We also support FC-CLIP with [HuggingFace 🤗 Demo](https://huggingface.co/spaces/fun-research/FC-CLIP)
+
 ## Model Zoo
 
 <table>
