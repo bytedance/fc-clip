@@ -1,5 +1,14 @@
 # Convolutions Die Hard: Open-Vocabulary Panoptic Segmentation with Single Frozen Convolutional CLIP
 
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/convolutions-die-hard-open-vocabulary/open-vocabulary-panoptic-segmentation-on)](https://paperswithcode.com/sota/open-vocabulary-panoptic-segmentation-on?p=convolutions-die-hard-open-vocabulary)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/convolutions-die-hard-open-vocabulary/open-vocabulary-semantic-segmentation-on-3)](https://paperswithcode.com/sota/open-vocabulary-semantic-segmentation-on-3?p=convolutions-die-hard-open-vocabulary)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/convolutions-die-hard-open-vocabulary/open-vocabulary-semantic-segmentation-on)](https://paperswithcode.com/sota/open-vocabulary-semantic-segmentation-on?p=convolutions-die-hard-open-vocabulary)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/convolutions-die-hard-open-vocabulary/open-vocabulary-semantic-segmentation-on-9)](https://paperswithcode.com/sota/open-vocabulary-semantic-segmentation-on-9?p=convolutions-die-hard-open-vocabulary)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/convolutions-die-hard-open-vocabulary/open-vocabulary-semantic-segmentation-on-2)](https://paperswithcode.com/sota/open-vocabulary-semantic-segmentation-on-2?p=convolutions-die-hard-open-vocabulary)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/convolutions-die-hard-open-vocabulary/open-vocabulary-semantic-segmentation-on-7)](https://paperswithcode.com/sota/open-vocabulary-semantic-segmentation-on-7?p=convolutions-die-hard-open-vocabulary)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/convolutions-die-hard-open-vocabulary/open-vocabulary-semantic-segmentation-on-1)](https://paperswithcode.com/sota/open-vocabulary-semantic-segmentation-on-1?p=convolutions-die-hard-open-vocabulary)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/convolutions-die-hard-open-vocabulary/open-vocabulary-semantic-segmentation-on-5)](https://paperswithcode.com/sota/open-vocabulary-semantic-segmentation-on-5?p=convolutions-die-hard-open-vocabulary)
+
 This repo contains the code for our paper [**Convolutions Die Hard: Open-Vocabulary Panoptic Segmentation with Single Frozen Convolutional CLIP**](https://arxiv.org/abs/2308.02487)
 
 <div align="center">
