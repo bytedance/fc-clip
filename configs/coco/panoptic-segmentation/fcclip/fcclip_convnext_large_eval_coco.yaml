@@ -1,0 +1,3 @@
+_BASE_: ./fcclip_convnext_large_eval_ade20k.yaml
+DATASETS:
+  TEST: ("openvocab_coco_2017_val_panoptic_with_sem_seg",)

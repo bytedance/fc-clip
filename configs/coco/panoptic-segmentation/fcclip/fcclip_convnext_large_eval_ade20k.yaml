@@ -1,0 +1,28 @@
+_BASE_: ../maskformer2_R50_bs16_50ep.yaml
+MODEL:
+  META_ARCHITECTURE: "FCCLIP"
+  SEM_SEG_HEAD:
+    NAME: "FCCLIPHead"
+  # backbone part.
+  BACKBONE:
+    NAME: "CLIP"
+  WEIGHTS: ""
+  PIXEL_MEAN: [122.7709383, 116.7460125, 104.09373615]
+  PIXEL_STD: [68.5005327, 66.6321579, 70.32316305]
+  FC_CLIP:
+    CLIP_MODEL_NAME: "convnext_large_d_320"
+    CLIP_PRETRAINED_WEIGHTS: "laion2b_s29b_b131k_ft_soup"
+    EMBED_DIM: 768
+    GEOMETRIC_ENSEMBLE_ALPHA: 0.4
+    GEOMETRIC_ENSEMBLE_BETA: 0.8
+  MASK_FORMER:
+    NUM_OBJECT_QUERIES: 250
+    TEST:
+      SEMANTIC_ON: True
+      INSTANCE_ON: True
+      PANOPTIC_ON: True
+      OBJECT_MASK_THRESHOLD: 0.0
+
+DATASETS:
+  TRAIN: ("openvocab_coco_2017_train_panoptic_with_sem_seg",)
+  TEST: ("openvocab_ade20k_panoptic_val",)

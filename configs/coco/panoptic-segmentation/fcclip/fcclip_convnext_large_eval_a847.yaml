@@ -1,0 +1,10 @@
+_BASE_: ./fcclip_convnext_large_eval_ade20k.yaml
+
+MODEL:
+  MASK_FORMER:
+    TEST:
+      PANOPTIC_ON: False
+      INSTANCE_ON: False
+
+DATASETS:
+  TEST: ("openvocab_ade20k_full_sem_seg_val",)

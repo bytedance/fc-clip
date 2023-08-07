@@ -1,0 +1,8 @@
+_BASE_: ./fcclip_convnext_large_eval_ade20k.yaml
+
+INPUT:
+  MIN_SIZE_TEST: 1024
+  MAX_SIZE_TEST: 2560
+
+DATASETS:
+  TEST: ("openvocab_cityscapes_fine_panoptic_val",)

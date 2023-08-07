@@ -1,0 +1,183 @@
+0:invalid_class_id
+1:person,child,girl,boy,woman,man,people,children,girls,boys,women,men,lady,guy,ladies,guys
+2:bicycle,bicycles,bike,bikes
+3:car,cars
+4:motorcycle,motorcycles
+5:airplane,airplanes
+6:bus,buses
+7:train,trains,locomotive,locomotives,freight train
+8:truck,trucks
+9:boat,boats
+10:traffic light
+11:fire hydrant
+12:invalid_class_id
+13:stop sign
+14:parking meter
+15:bench,benches
+16:bird,birds
+17:cat,cats,kitties,kitty
+18:dog,dogs,puppy,puppies
+19:horse,horses,foal
+20:sheep
+21:cow,cows,calf
+22:elephant,elephants
+23:bear,bears
+24:zebra,zebras
+25:giraffe,giraffes
+26:invalid_class_id
+27:backpack,backpacks
+28:umbrella,umbrellas
+29:invalid_class_id
+30:invalid_class_id
+31:handbag,handbags
+32:tie
+33:suitcase,suitcases
+34:frisbee
+35:skis
+36:snowboard
+37:sports ball
+38:kite,kites
+39:baseball bat
+40:baseball glove
+41:skateboard
+42:surfboard
+43:tennis racket
+44:bottle,bottles,water bottle
+45:invalid_class_id
+46:wine glass,wine glasses,wineglass
+47:cup,cups,water cup,water glass
+48:fork,forks
+49:knife,knives
+50:spoon,spoons
+51:bowl,bowls
+52:banana,bananas
+53:apple,apples,apple fruit
+54:sandwich,sandwiches
+55:orange,oranges,orange fruit
+56:broccoli
+57:carrot,carrots
+58:hot dog
+59:pizza
+60:donut,donuts
+61:cake,cakes
+62:chair,chairs
+63:couch,sofa,sofas
+64:potted plant,potted plants,pottedplant,pottedplants,planter,planters
+65:bed,beds
+66:invalid_class_id
+67:dining table,dining tables,diningtable,diningtables,plate,plates,diningtable tablecloth
+68:invalid_class_id
+69:invalid_class_id
+70:toilet
+71:invalid_class_id
+72:tv
+73:laptop
+74:mouse
+75:remote,tv remote,remote control
+76:keyboard
+77:cell phone,mobile
+78:microwave
+79:oven,ovens
+80:toaster
+81:sink,sinks
+82:refrigerator,fridge
+83:invalid_class_id
+84:book,books
+85:clock
+86:vase,vases
+87:scissors,scissor
+88:teddy bear,teddy bears
+89:hair drier
+90:toothbrush,toothbrushes
+91:invalid_class_id
+92:banner,banners
+93:blanket,blankets
+94:branch
+95:bridge
+96:building,buildings
+97:bush,bushes
+98:cabinet,cabinets
+99:cage,cages
+100:cardboard
+101:carpet,carpets
+102:ceiling-other,ceiling
+103:ceiling-tile,ceiling tile
+104:cloth
+105:clothes
+106:clouds
+107:counter
+108:cupboard,cupboards
+109:curtain,curtains
+110:desk-stuff,desk,desks
+111:dirt
+112:door-stuff,door,doors
+113:fence,fences
+114:floor-marble,marble floor,floor marble
+115:floor-other,floor
+116:floor-stone,stone floor,floor stone
+117:floor-tile,tile floor,floor tile
+118:floor-wood,wood floor,floor wood
+119:flower,flowers
+120:fog
+121:food-other,food
+122:fruit,fruits
+123:furniture-other,furniture
+124:grass
+125:gravel
+126:ground-other,ground
+127:hill
+128:house
+129:leaves
+130:light
+131:mat
+132:metal
+133:mirror-stuff,mirror
+134:moss
+135:mountain,mountains
+136:mud
+137:napkin
+138:net
+139:paper
+140:pavement
+141:pillow,pillows
+142:plant-other
+143:plastic
+144:platform
+145:playingfield,tennis court,baseball field,soccer field,tennis field
+146:railing
+147:railroad
+148:river
+149:road
+150:rock
+151:roof
+152:rug
+153:salad
+154:sand
+155:sea,sea wave,wave,waves
+156:shelf
+157:sky-other,sky
+158:skyscraper
+159:snow
+160:solid-other,solid
+161:stairs
+162:stone
+163:straw
+164:structural-other,structural
+165:table
+166:tent
+167:textile-other,textile
+168:towel
+169:tree,trees,palm tree
+170:vegetable
+171:wall-brick,brick wall,wall brick
+172:wall-concrete,concrete wall,wall concrete
+173:wall-other,wall
+174:wall-panel,wall panel,panel wall
+175:wall-stone,stone wall,wall stone
+176:wall-tile,wall tile,tile wall
+177:wall-wood,wood wall, wall wood
+178:water-other,water
+179:waterdrops
+180:window-blind,window blind
+181:window-other,window
+182:wood

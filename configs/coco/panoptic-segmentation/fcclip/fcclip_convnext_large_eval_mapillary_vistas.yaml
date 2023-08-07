@@ -1,0 +1,12 @@
+_BASE_: ./fcclip_convnext_large_eval_ade20k.yaml
+
+MODEL:
+  MASK_FORMER:
+    TEST:
+      INSTANCE_ON: False
+INPUT:
+  MIN_SIZE_TEST: 1024
+  MAX_SIZE_TEST: 2560
+
+DATASETS:
+  TEST: ("openvocab_mapillary_vistas_panoptic_val",)
