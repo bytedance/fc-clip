@@ -34,6 +34,9 @@ class CLIP(Backbone):
             open_clip.create_model_and_transforms(model_name, pretrained=pretrained)
         comm.synchronize()
 
+        self.model_name = model_name
+        self.pretrained = pretrained
+
         self.clip_model, _, _ = open_clip.create_model_and_transforms(model_name, pretrained=pretrained)
         self.text_tokenizer = open_clip.get_tokenizer(model_name)
 
@@ -46,6 +49,17 @@ class CLIP(Backbone):
                 self.output_channels = [192, 192, 384, 768, 1536]
             elif '_xxlarge' in model_name:
                 self.output_channels = [384, 384, 768, 1536, 3072]
+        
+        elif 'rn' in model_name:
+            self.model_type = 'resnet'
+            if model_name.replace('-quickgelu', '') in ['rn50', 'rn101']:
+                self.output_channels = [64, 256, 512, 1024, 2048]
+            elif model_name == 'rn50x4':
+                self.output_channels = [80, 320, 640, 1280, 2560]
+            elif model_name == 'rn50x16':
+                self.output_channels = [96, 384, 768, 1536, 3072]
+            elif model_name == 'rn50x64':
+                self.output_channels = [128, 512, 1024, 2048, 4096]
 
         self._out_feature_strides = {
             "stem": 2,
@@ -91,12 +105,14 @@ class CLIP(Backbone):
     def extract_features(self, x):
         return {
             'convnext': self.extract_features_convnext,
+            'resnet': self.extract_features_resnet,
         }[self.model_type](x)
     
-    def visual_prediction_forward(self, x):
+    def visual_prediction_forward(self, x, masks=None):
         return {
             'convnext': self.visual_prediction_forward_convnext,
-        }[self.model_type](x)
+            'resnet': self.visual_prediction_forward_resnet,
+        }[self.model_type](x, masks)
 
     def extract_features_convnext(self, x):
         out = {}
@@ -110,12 +126,80 @@ class CLIP(Backbone):
         out['clip_vis_dense'] = x.contiguous()
         return out
     
-    def visual_prediction_forward_convnext(self, x,):
+    def extract_features_resnet(self, x):
+        out = {}
+        x = self.clip_model.visual.act1(self.clip_model.visual.bn1(self.clip_model.visual.conv1(x)))
+        x = self.clip_model.visual.act2(self.clip_model.visual.bn2(self.clip_model.visual.conv2(x)))
+        x = self.clip_model.visual.act3(self.clip_model.visual.bn3(self.clip_model.visual.conv3(x)))
+        out['stem'] = x.contiguous() # os2
+        x = self.clip_model.visual.avgpool(x)
+        x = self.clip_model.visual.layer1(x)
+        out['res2'] = x.contiguous() # os4
+        x = self.clip_model.visual.layer2(x)
+        out['res3'] = x.contiguous() # os8
+        x = self.clip_model.visual.layer3(x)
+        out['res4'] = x.contiguous() # os16
+        x = self.clip_model.visual.layer4(x)
+        out['res5'] = x.contiguous() # os32
+        out['clip_vis_dense'] = x
+        return out
+
+    def visual_prediction_forward_convnext(self, x, masks):
         batch, num_query, channel = x.shape
         x = x.reshape(batch*num_query, channel, 1, 1) # fake 2D input
         x = self.clip_model.visual.trunk.head(x)
         x = self.clip_model.visual.head(x)
         return x.view(batch, num_query, x.shape[-1]) # B x num_queries x 640
+
+    def visual_prediction_forward_resnet(self, x, masks):
+        batch, channel, height, width = x.shape
+        if masks.shape[-2] != height or masks.shape[-1] != width:
+            masks = F.inteprolate(masks, size=(height, width), mode='bilinear', align_corners=False)
+        num_masks = masks.shape[1]
+
+        positional_embedding = self.clip_model.visual.attnpool.positional_embedding.to(x.dtype)
+        spatial_pos_embed = positional_embedding[1:, None, :] # HW x 1 x C
+        orig_size = int(math.sqrt(spatial_pos_embed.shape[0]))
+        spatial_pos_embed = spatial_pos_embed.permute(1, 2, 0).reshape(1, channel, orig_size, orig_size)
+        spatial_pos_embed = F.interpolate(spatial_pos_embed, size=(height, width), mode='bilinear', align_corners=False) # 1 x C x H x W
+        spatial_pos_embed = spatial_pos_embed.permute(2, 3, 0, 1).reshape(height*width, 1, channel)
+        x = x.reshape(batch, channel, height * width).permute(2, 0, 1)  # BCHW -> (HW)BC
+        key_value = x + spatial_pos_embed
+        
+        masks = masks.reshape(batch, num_masks, height * width)
+        masks = (masks > 0).to(masks.dtype)
+        query = x.mean(0, keepdim=True) + positional_embedding[:1, None, :]
+        query = query.repeat_interleave(num_masks, dim=0)
+
+        attn_mask = masks < 0.5
+        attn_mask = attn_mask.unsqueeze(1).expand(-1, self.clip_model.visual.attnpool.num_heads, -1, -1)
+        attn_mask = attn_mask.reshape(batch * self.clip_model.visual.attnpool.num_heads,
+                                    query.shape[0], key_value.shape[0])
+
+        x = F.multi_head_attention_forward(
+            query=query, key=key_value, value=key_value,
+            embed_dim_to_check=key_value.shape[-1],
+            num_heads=self.clip_model.visual.attnpool.num_heads,
+            q_proj_weight=self.clip_model.visual.attnpool.q_proj.weight,
+            k_proj_weight=self.clip_model.visual.attnpool.k_proj.weight,
+            v_proj_weight=self.clip_model.visual.attnpool.v_proj.weight,
+            in_proj_weight=None,
+            in_proj_bias=torch.cat([self.clip_model.visual.attnpool.q_proj.bias,
+                                    self.clip_model.visual.attnpool.k_proj.bias,
+                                    self.clip_model.visual.attnpool.v_proj.bias]),
+            bias_k=None,
+            bias_v=None,
+            add_zero_attn=False,
+            dropout_p=0.,
+            out_proj_weight=self.clip_model.visual.attnpool.c_proj.weight,
+            out_proj_bias=self.clip_model.visual.attnpool.c_proj.bias,
+            use_separate_proj_weight=True,
+            training=self.clip_model.visual.attnpool.training,
+            need_weights=False,
+            attn_mask=attn_mask
+        )[0].permute(1, 0, 2) # B x N x C
+
+        return x
 
     def get_text_classifier(self, text_list, device):
         self.eval()

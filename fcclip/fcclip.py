@@ -71,6 +71,7 @@ class FCCLIP(nn.Module):
         # FC-CLIP
         geometric_ensemble_alpha: float,
         geometric_ensemble_beta: float,
+        ensemble_on_valid_mask: bool,
     ):
         """
         Args:
@@ -126,6 +127,7 @@ class FCCLIP(nn.Module):
         self.mask_pooling = MaskPooling()
         self.geometric_ensemble_alpha = geometric_ensemble_alpha
         self.geometric_ensemble_beta = geometric_ensemble_beta
+        self.ensemble_on_valid_mask = ensemble_on_valid_mask
 
         self.train_text_classifier = None
         self.test_text_classifier = None
@@ -281,6 +283,7 @@ class FCCLIP(nn.Module):
             "test_topk_per_image": cfg.TEST.DETECTIONS_PER_IMAGE,
             "geometric_ensemble_alpha": cfg.MODEL.FC_CLIP.GEOMETRIC_ENSEMBLE_ALPHA,
             "geometric_ensemble_beta": cfg.MODEL.FC_CLIP.GEOMETRIC_ENSEMBLE_BETA,
+            "ensemble_on_valid_mask": cfg.MODEL.FC_CLIP.ENSEMBLE_ON_VALID_MASK
         }
 
     @property
@@ -350,9 +353,15 @@ class FCCLIP(nn.Module):
             # We ensemble the pred logits of in-vocab and out-vocab
             clip_feature = features["clip_vis_dense"]
             mask_for_pooling = F.interpolate(mask_pred_results, size=clip_feature.shape[-2:],
-                                             mode='bilinear', align_corners=False)
-            pooled_clip_feature = self.mask_pooling(clip_feature, mask_for_pooling)
-            pooled_clip_feature = self.backbone.visual_prediction_forward(pooled_clip_feature)
+                                                mode='bilinear', align_corners=False)
+            if "convnext" in self.backbone.model_name.lower():
+                pooled_clip_feature = self.mask_pooling(clip_feature, mask_for_pooling)
+                pooled_clip_feature = self.backbone.visual_prediction_forward(pooled_clip_feature)
+            elif "rn" in self.backbone.model_name.lower():
+                pooled_clip_feature = self.backbone.visual_prediction_forward(clip_feature, mask_for_pooling)
+            else:
+                raise NotImplementedError
+
             out_vocab_cls_results = get_classification_logits(pooled_clip_feature, text_classifier, self.backbone.clip_model.logit_scale, num_templates)
             in_vocab_cls_results = mask_cls_results[..., :-1] # remove void
             out_vocab_cls_results = out_vocab_cls_results[..., :-1] # remove void
@@ -361,8 +370,19 @@ class FCCLIP(nn.Module):
             out_vocab_cls_probs = out_vocab_cls_results.softmax(-1)
             in_vocab_cls_results = in_vocab_cls_results.softmax(-1)
             category_overlapping_mask = self.category_overlapping_mask.to(self.device)
-            alpha = self.geometric_ensemble_alpha
-            beta = self.geometric_ensemble_beta
+
+            if self.ensemble_on_valid_mask:
+                # Only include out_vocab cls results on masks with valid pixels
+                valid_masking = (mask_for_pooling > 0).to(mask_for_pooling).sum(-1).sum(-1) > 0
+                valid_masking = valid_masking.to(in_vocab_cls_results.dtype).unsqueeze(-1)
+                alpha = torch.ones_like(in_vocab_cls_results) * self.geometric_ensemble_alpha
+                beta = torch.ones_like(in_vocab_cls_results) * self.geometric_ensemble_beta
+                alpha = alpha * valid_masking
+                beta = beta * valid_masking
+            else:
+                alpha = self.geometric_ensemble_alpha
+                beta = self.geometric_ensemble_beta
+
             cls_logits_seen = (
                 (in_vocab_cls_results ** (1 - alpha) * out_vocab_cls_probs**alpha).log()
                 * category_overlapping_mask
