@@ -373,6 +373,7 @@ class FCCLIP(nn.Module):
 
             if self.ensemble_on_valid_mask:
                 # Only include out_vocab cls results on masks with valid pixels
+                # We empirically find that this is important to obtain reasonable AP/mIOU score with ResNet CLIP models
                 valid_masking = (mask_for_pooling > 0).to(mask_for_pooling).sum(-1).sum(-1) > 0
                 valid_masking = valid_masking.to(in_vocab_cls_results.dtype).unsqueeze(-1)
                 alpha = torch.ones_like(in_vocab_cls_results) * self.geometric_ensemble_alpha

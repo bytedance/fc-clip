@@ -1,0 +1,7 @@
+_BASE_: ./fcclip_convnext_large_eval_ade20k.yaml
+MODEL:
+  FC_CLIP:
+    CLIP_MODEL_NAME: "RN50x16"
+    CLIP_PRETRAINED_WEIGHTS: "openai"
+    EMBED_DIM: 768
+    ENSEMBLE_ON_VALID_MASK: True
