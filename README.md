@@ -88,7 +88,7 @@ We also support FC-CLIP with [HuggingFace 🤗 Demo](https://huggingface.co/spac
     <td align="center"><a href="https://drive.google.com/file/d/1tcB-8FNON-LwckXQbUyKcBA2G7TU65Zh/view?usp=sharing"> checkpoint </a></td>
   </tr>
   <tr>
-    <td align="center"><a href="configs/coco/panoptic-segmentation/fcclip/cclip_convnext_large_eval_ade20k_r101.yaml"> FC-CLIP (ResNet101) </a></td>
+    <td align="center"><a href="configs/coco/panoptic-segmentation/fcclip/fclip_convnext_large_eval_ade20k_r101.yaml"> FC-CLIP (ResNet101) </a></td>
     <td align="center">19.1</td>
     <td align="center">10.2</td>
     <td align="center">24.0</td>
