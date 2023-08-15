@@ -68,7 +68,7 @@ We also support FC-CLIP with [HuggingFace 🤗 Demo](https://huggingface.co/spac
     <td align="center">mAP</td>
     <td align="center">mIoU</td>
   </tr>
-    <td align="center"><a href="configs/coco/panoptic-segmentation/fcclip_convnext_large_eval_ade20k_r50.yaml"> FC-CLIP (ResNet50) </a></td>
+    <td align="center"><a href="configs/coco/panoptic-segmentation/fcclip/fcclip_convnext_large_eval_ade20k_r50.yaml"> FC-CLIP (ResNet50) </a></td>
     <td align="center">17.9</td>
     <td align="center">9.5</td>
     <td align="center">23.3</td>
@@ -88,7 +88,7 @@ We also support FC-CLIP with [HuggingFace 🤗 Demo](https://huggingface.co/spac
     <td align="center"><a href="https://drive.google.com/file/d/1tcB-8FNON-LwckXQbUyKcBA2G7TU65Zh/view?usp=sharing"> checkpoint </a></td>
   </tr>
   <tr>
-    <td align="center"><a href="configs/coco/panoptic-segmentation/fcclip_convnext_large_eval_ade20k_r101.yaml"> FC-CLIP (ResNet101) </a></td>
+    <td align="center"><a href="configs/coco/panoptic-segmentation/fcclip/cclip_convnext_large_eval_ade20k_r101.yaml"> FC-CLIP (ResNet101) </a></td>
     <td align="center">19.1</td>
     <td align="center">10.2</td>
     <td align="center">24.0</td>
@@ -108,7 +108,7 @@ We also support FC-CLIP with [HuggingFace 🤗 Demo](https://huggingface.co/spac
     <td align="center"><a href="https://drive.google.com/file/d/1P0mdgftReWzVbPQ0O0CSBfW3krHhTOj0/view?usp=sharing"> checkpoint </a></td>
   </tr>
   <tr>
-    <td align="center"><a href="configs/coco/panoptic-segmentation/fcclip_convnext_large_eval_ade20k_r50x4.yaml"> FC-CLIP (ResNet50x4) </a></td>
+    <td align="center"><a href="configs/coco/panoptic-segmentation/fcclip/fcclip_convnext_large_eval_ade20k_r50x4.yaml"> FC-CLIP (ResNet50x4) </a></td>
     <td align="center">21.8</td>
     <td align="center">11.7</td>
     <td align="center">26.8</td>
@@ -128,7 +128,7 @@ We also support FC-CLIP with [HuggingFace 🤗 Demo](https://huggingface.co/spac
     <td align="center"><a href="https://drive.google.com/file/d/1nUpUsNUE22eOV9skxv9IyIkmCbg5jrIF/view?usp=sharing"> checkpoint </a></td>
   </tr>
   <tr>
-    <td align="center"><a href="configs/coco/panoptic-segmentation/fcclip_convnext_large_eval_ade20k_r50x16.yaml"> FC-CLIP (ResNet50x16) </a></td>
+    <td align="center"><a href="configs/coco/panoptic-segmentation/fcclip/fcclip_convnext_large_eval_ade20k_r50x16.yaml"> FC-CLIP (ResNet50x16) </a></td>
     <td align="center">22.5</td>
     <td align="center">13.6</td>
     <td align="center">29.4</td>
@@ -148,7 +148,7 @@ We also support FC-CLIP with [HuggingFace 🤗 Demo](https://huggingface.co/spac
     <td align="center"><a href="https://drive.google.com/file/d/1rJu2UwwtI0VLDl9CyB8Mkgw9qHlnX70W/view?usp=sharing"> checkpoint </a></td>
   </tr>
   <tr>
-    <td align="center"><a href="configs/coco/panoptic-segmentation/fcclip_convnext_large_eval_ade20k_r50x64.yaml"> FC-CLIP (ResNet50x64) </a></td>
+    <td align="center"><a href="configs/coco/panoptic-segmentation/fcclip/fcclip_convnext_large_eval_ade20k_r50x64.yaml"> FC-CLIP (ResNet50x64) </a></td>
     <td align="center">22.8</td>
     <td align="center">13.6</td>
     <td align="center">28.4</td>
@@ -168,7 +168,7 @@ We also support FC-CLIP with [HuggingFace 🤗 Demo](https://huggingface.co/spac
     <td align="center"><a href="https://drive.google.com/file/d/1rvfFVp5p3PZQsHp2NGVEBeYYcqgVVaZX/view?usp=sharing"> checkpoint </a></td>
   </tr>
   <tr>
-    <td align="center"><a href="configs/coco/panoptic-segmentation/fcclip_convnext_large_eval_ade20k.yaml"> FC-CLIP (ConvNeXt-Large) </a></td>
+    <td align="center"><a href="configs/coco/panoptic-segmentation/fcclip/fcclip_convnext_large_eval_ade20k.yaml"> FC-CLIP (ConvNeXt-Large) </a></td>
     <td align="center">26.8</td>
     <td align="center">16.8</td>
     <td align="center">34.1</td>
