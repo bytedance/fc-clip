@@ -1,4 +1,4 @@
-# Convolutions Die Hard: Open-Vocabulary Panoptic Segmentation with Single Frozen Convolutional CLIP
+# Convolutions Die Hard: Open-Vocabulary Segmentation with Single Frozen Convolutional CLIP
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/convolutions-die-hard-open-vocabulary/open-vocabulary-panoptic-segmentation-on)](https://paperswithcode.com/sota/open-vocabulary-panoptic-segmentation-on?p=convolutions-die-hard-open-vocabulary)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/convolutions-die-hard-open-vocabulary/open-vocabulary-semantic-segmentation-on-3)](https://paperswithcode.com/sota/open-vocabulary-semantic-segmentation-on-3?p=convolutions-die-hard-open-vocabulary)
@@ -9,7 +9,7 @@
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/convolutions-die-hard-open-vocabulary/open-vocabulary-semantic-segmentation-on-1)](https://paperswithcode.com/sota/open-vocabulary-semantic-segmentation-on-1?p=convolutions-die-hard-open-vocabulary)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/convolutions-die-hard-open-vocabulary/open-vocabulary-semantic-segmentation-on-5)](https://paperswithcode.com/sota/open-vocabulary-semantic-segmentation-on-5?p=convolutions-die-hard-open-vocabulary)
 
-This repo contains the code for our paper [**Convolutions Die Hard: Open-Vocabulary Panoptic Segmentation with Single Frozen Convolutional CLIP**](https://arxiv.org/abs/2308.02487)
+This repo contains the code for our paper [**Convolutions Die Hard: Open-Vocabulary Segmentation with Single Frozen Convolutional CLIP**](https://arxiv.org/abs/2308.02487)
 
 <div align="center">
   <img src="imgs/teaser.png" width="100%" height="100%"/>
@@ -197,7 +197,7 @@ If you use FC-CLIP in your research, please use the following BibTeX entry.
 
 ```BibTeX
 @inproceedings{yu2023fcclip,
-  title={Convolutions Die Hard: Open-Vocabulary Panoptic Segmentation with Single Frozen Convolutional CLIP},
+  title={Convolutions Die Hard: Open-Vocabulary Segmentation with Single Frozen Convolutional CLIP},
   author={Qihang Yu and Ju He and Xueqing Deng and Xiaohui Shen and Liang-Chieh Chen},
   journal={arXiv: 2308.02487},
   year={2023}
