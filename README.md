@@ -1,4 +1,4 @@
-# Convolutions Die Hard: Open-Vocabulary Segmentation with Single Frozen Convolutional CLIP
+# Convolutions Die Hard: Open-Vocabulary Segmentation with Single Frozen Convolutional CLIP (NeurIPS 2023)
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/convolutions-die-hard-open-vocabulary/open-vocabulary-panoptic-segmentation-on)](https://paperswithcode.com/sota/open-vocabulary-panoptic-segmentation-on?p=convolutions-die-hard-open-vocabulary)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/convolutions-die-hard-open-vocabulary/open-vocabulary-semantic-segmentation-on-3)](https://paperswithcode.com/sota/open-vocabulary-semantic-segmentation-on-3?p=convolutions-die-hard-open-vocabulary)
@@ -199,7 +199,7 @@ If you use FC-CLIP in your research, please use the following BibTeX entry.
 @inproceedings{yu2023fcclip,
   title={Convolutions Die Hard: Open-Vocabulary Segmentation with Single Frozen Convolutional CLIP},
   author={Qihang Yu and Ju He and Xueqing Deng and Xiaohui Shen and Liang-Chieh Chen},
-  journal={arXiv: 2308.02487},
+  booktitle={NeurIPS},
   year={2023}
 }
 ```
