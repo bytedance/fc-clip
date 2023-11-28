@@ -305,6 +305,21 @@ def main(args):
 
     if args.eval_only:
         model = Trainer.build_model(cfg)
+
+        total_params = sum(p.numel() for p in model.parameters())
+        trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
+        frozen_params = sum(p.numel() for p in model.parameters() if not p.requires_grad)
+        frozen_params_exclude_text = 0
+        for n, p in model.named_parameters():
+            if p.requires_grad:
+                continue
+            # ignore text tower
+            if 'clip_model.token_embedding' in n or 'clip_model.positional_embedding' in n or 'clip_model.transformer' in n or 'clip_model.ln_final' in n or 'clip_model.text_projection' in n:
+                print(n)
+                continue
+            frozen_params_exclude_text += p.numel()    
+        print(f"total_params: {total_params}, trainable_params: {trainable_params}, frozen_params: {frozen_params}, frozen_params_exclude_text: {frozen_params_exclude_text}")
+
         DetectionCheckpointer(model, save_dir=cfg.OUTPUT_DIR).resume_or_load(
             cfg.MODEL.WEIGHTS, resume=args.resume
         )
