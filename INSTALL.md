@@ -23,6 +23,7 @@ To build on a system that does not have a GPU device but provide the drivers:
 ```bash
 TORCH_CUDA_ARCH_LIST='8.0' FORCE_CUDA=1 python setup.py build install
 ```
+ yoyoyo
 
 ### Example conda environment setup
 ```bash
