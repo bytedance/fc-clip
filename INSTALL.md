@@ -10,7 +10,6 @@
 - `pip install -r requirements.txt`
 
 ### CUDA kernel for MSDeformAttn
-After preparing the required environment, run the following command to compile CUDA kernel for MSDeformAttn:
 
 `CUDA_HOME` must be defined and points to the directory of the installed CUDA toolkit.
 
